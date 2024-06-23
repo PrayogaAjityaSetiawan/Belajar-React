@@ -9,9 +9,6 @@ const FormLogin = () => {
     // Untuk Menangkap inputan dan disimpan kedalam Local Storage
     const handleLogin = (event) => {
         event.preventDefault()
-        // localStorage.setItem("email", event.target.email.value)
-        // localStorage.setItem("passwoard", event.target.passwoard.value)
-        // window.location.href ="/products"
         const data = {
             username: event.target.username.value,
             password: event.target.password.value,

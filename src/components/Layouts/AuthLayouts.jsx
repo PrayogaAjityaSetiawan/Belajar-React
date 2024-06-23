@@ -9,18 +9,6 @@ const AuthLayouts = (props) => {
             Welcome, Please enter your details
           </p>
           {children}
-          
-          {/* <p className="text-sm text-center w-full my-3">
-          conditional Rendering Menggunakan Ternary Operator
-            {type === 'login' ? "Don`t have an account?" : "Alredy have an account?"} 
-          conditional Rendering Menggunakan AND operator
-            {type === 'login' && (
-              <Link to= "/register" className="text-blue-600 font-bold"> Register </Link>
-            )}
-            {type === 'register' && (
-              <Link to= "/login" className="text-blue-600 font-bold"> Login </Link>
-            )}
-          </p> */}
           <Navigation type={type}/>
         </div>
       </div>
@@ -40,7 +28,7 @@ const Navigation = ({type}) => {
     return(
       <p className="text-sm text-center w-full my-3">
         Alredy have an account?
-        <Link to= "/login" className="text-blue-600 font-bold"> Login </Link>
+        <Link to= "/" className="text-blue-600 font-bold"> Login </Link>
       </p>
     )
   }
