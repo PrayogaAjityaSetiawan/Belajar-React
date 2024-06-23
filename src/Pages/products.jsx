@@ -43,8 +43,6 @@ const ProductPage = () => {
         (category ? product.category === category : true);
     })
     
-
-
     return (
         <div className="font-primary">
             <Navbar keranjang={keranjang} setKeranjang={setKeranjang} />
@@ -53,7 +51,7 @@ const ProductPage = () => {
                 src={hero} alt="banner"
             />
             {/* Card Product */}
-            <div className="flex gap-5 mx-0 lg:mx-10 mt-5" >
+            <div className="flex lg:mx-10 mt-5" >
                 <div className="w-[20%] hidden lg:block">
                     <div className="bg-white border border-black rounded-lg p-5">
                         <h1 className="font-bold">Filter Product</h1>
@@ -78,8 +76,8 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mx-auto md:w-[80%]">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 md:grid-cols-3 gap-3 md:gap-5 ">
+                <div className=" w-full md:w-[80%]">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mx-5 ">
                         {loading ? (
                             Array.from({ length: 8 }).map((_, index) => (
                                 <SkeletonCard key={index} />

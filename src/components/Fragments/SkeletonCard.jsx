@@ -5,7 +5,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 const SkeletonCard = () => {
   return (
     <div className="card">
-      <Skeleton height={200} />
+      <Skeleton height={200} style={{ marginBottom: 10 }} />
       <div className="card-body">
         <Skeleton count={1} height={20} style={{ marginBottom: 10 }} />
         <Skeleton count={1} height={15} width={`60%`} />
