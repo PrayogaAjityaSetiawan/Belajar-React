@@ -8,6 +8,7 @@ import Cart from "../components/Fragments/Cart";
 import Navbar from "../components/Layouts/Navbar";
 import SkeletonCard from "../components/Fragments/SkeletonCard";
 import animate from "../assets/empty.gif"
+import { CiSearch } from "react-icons/ci";
 
 const ProductPage = () => {
     // UseState 
@@ -17,6 +18,7 @@ const ProductPage = () => {
     const [category, setCategory] = useState("");
     const [filterCategory, setFilterCategory] = useState([]);
     const [search, setSearch] = useState("");
+    const [openSearch, setOpenSearch] = useState(false);
     useLogin();
 
 
@@ -47,13 +49,21 @@ const ProductPage = () => {
         <div className="font-primary">
             <Navbar keranjang={keranjang} setKeranjang={setKeranjang} />
             <img
-                className="w-full mt-[100px] h-[500px] bg-cover bg-center mx-auto "
+                className="w-full mt-[100px] h-[500px] bg-cover object-cover bg-center mx-auto "
                 src={hero} alt="banner"
             />
+
+            {/* Search */}
+            <div className="block md:hidden relative">
+                <div onClick={() => setOpenSearch(!openSearch)} className="bg-black inline-block fixed top-[90px] left-0 p-2 rounded-tr-lg rounded-br-lg">
+                    <CiSearch size={30} className="text-white" />
+                </div>
+            </div>
+            {/* Akhir Search */}
             {/* Card Product */}
-            <div className="flex lg:mx-10 mt-5" >
-                <div className="w-[20%] hidden lg:block">
-                    <div className="bg-white border border-black rounded-lg p-5">
+            {openSearch && (
+                    <div className=" fixed top-[140px] left-0 w-[60%] z-50 ">
+                    <div className="bg-white border rounded-tr-lg rounded-br-lg p-5 shadow-lg">
                         <h1 className="font-bold">Filter Product</h1>
                         <input
                             className="w-full py-2 rounded-lg px-3 border border-black"
@@ -76,8 +86,34 @@ const ProductPage = () => {
                         </div>
                     </div>
                 </div>
-                <div className=" w-full md:w-[80%]">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 mx-5 ">
+            ) }
+            <div className=" flex gap-5 lg:mx-10 mt-5" >
+                <div className="w-[20%] hidden lg:block">
+                    <div className="bg-white border border-gray-300 rounded-lg p-5">
+                        <h1 className="font-bold">Filter Product</h1>
+                        <input
+                            className="w-full py-2 rounded-lg px-3 border border-black"
+                            type="text"
+                            placeholder="Enter your items..."
+                            onChange={(e) => setSearch(e.target.value)}
+                        />
+                        <div className="flex flex-col gap-2 mt-2">
+                        {filterCategory.map((category, index) => (
+                                <label key={index}>
+                                    <input
+                                        type="checkbox"
+                                        className="accent-pink-500 mr-2"
+                                        name="category"
+                                        value={category}
+                                        onChange={(e) => setCategory(e.target.value)}
+                                    /> {category}
+                                </label>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+                <div className="mx-auto md:w-[80%]">
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5">
                         {loading ? (
                             Array.from({ length: 8 }).map((_, index) => (
                                 <SkeletonCard key={index} />

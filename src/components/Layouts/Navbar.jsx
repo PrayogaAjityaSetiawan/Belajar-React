@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import useLogin from "../../hooks/useLogin";
 import Button from "../Elements/Button";
-import { FaShoppingCart } from "react-icons/fa";
+import { FaBagShopping } from "react-icons/fa6";
+import { FaUser } from "react-icons/fa6";
 import { useSelector } from "react-redux";
+
 
 const Navbar = ({ keranjang, setKeranjang }) => {
   const cart = useSelector((state) => state.cart.data);
@@ -12,7 +14,7 @@ const Navbar = ({ keranjang, setKeranjang }) => {
   // Untuk Menghapus data didalam Local Storage dan Keluar daari halaman Product/Logout
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login";
+    window.location.href = "/";
   };
 
   // Menambah Jumlah Barang Pada Keranjang
@@ -23,30 +25,35 @@ const Navbar = ({ keranjang, setKeranjang }) => {
     setTotalCart(sum);
   }, [cart]);
 
+
   return (
     <div>
       {/* Navbar */}
       <nav className="w-full fixed top-0 z-[10]">
-        <div className="w-full p-5 bg-white border-b shadow-sm border-black flex justify-between items-center font-bold  ">
-          <span className="font-bold uppercase">Aybwarehose</span>
-            <div className="relative">
-              {/* Shopping Cart Icon */}
-              <div className="flex items-center gap-3">
-                <FaShoppingCart size={25} onClick={() => setKeranjang(!keranjang)} />
-                <div>
-                  {/* Badge showing the number of items in the cart */}
-                  <div className="absolute top-[-10px] left-[15px] h-6 w-6 flex items-center justify-center bg-red-700 border border-white rounded-full">
-                    <p className="text-xs text-white">{totalCart}</p>
+        <div className="w-full py-5 px-5 md:px-10 bg-[#FEFEFE] border-b shadow-sm border-black flex justify-between items-center font-bold  ">
+          <span className="font-bold text-xl uppercase">Aybwarehose</span>
+          <div className="flex gap-5 items-center">
+              <div className="relative">
+                  {/* Shopping Cart Icon */}
+                  <FaBagShopping size={28} className="text-black" onClick={() => setKeranjang(!keranjang)} />
+                  <div>
+                      {/* Badge showing the number of items in the cart */}
+                      <div className="absolute top-[-8px] left-[12px] h-6 w-6 flex items-center justify-center bg-red-700 border border-white rounded-full">
+                      <p className="text-xs text-white">{totalCart}</p>
+                      </div>
                   </div>
+              </div>
+              <div className="hidden md:block">
+              <div className="flex gap-5 items-center">
+                <div className="flex items-center gap-2">
+                    <FaUser size={25} className="text-black"/>
+                    <span>{username}</span>
                 </div>
-                <button></button>
-                <div className="hidden md:block">
-                <span>{username}</span>
                 <Button classname="bg-black text-white" onClick={handleLogout}>
                   Logout
                 </Button>
-          </div>
-            </div>
+              </div>
+              </div>
           </div>
         </div>
       </nav>

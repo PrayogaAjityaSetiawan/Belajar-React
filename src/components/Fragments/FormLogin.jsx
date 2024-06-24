@@ -35,7 +35,7 @@ const FormLogin = () => {
         <form onSubmit={handleLogin}>
             <InputForm label = "Username" type="text" placeholder="Jhon Doe" name="username" ref = {usernameRef} />
             <InputForm label = "Password" type="password" placeholder="********" name="password" />
-            <Button classname="bg-blue-600 w-full" type="submit">Login</Button>
+            <Button classname="bg-black w-full" type="submit">Login</Button>
             {loginFail ? <p className="text-red-500 text-center mt-5">{loginFail}</p> : null}
         </form>  
     )

@@ -4,6 +4,8 @@ import { IoClose } from "react-icons/io5";
 import { decreesItem, increesItem, removeItem } from "../../redux/slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { MdOutlineDeleteOutline } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Cart = ({products, setKeranjang}) => {
@@ -24,6 +26,9 @@ const Cart = ({products, setKeranjang}) => {
         }
     }, [cart])
 
+    // Notifikasi Checkout
+    const notify = () => toast.info("Maaf belum bisa😓");
+
   return (
     <div className="w-[100%] h-full  mx-auto flex flex-col justify-between">
         <div className="overflow-y-scroll">
@@ -39,7 +44,7 @@ const Cart = ({products, setKeranjang}) => {
                         <div className="flex items-center justify-between p-3" key={item.id}>
                             <div className="flex items-center">
                                 <img className="h-20 w-20" src={product.image } alt={product.title} />
-                                <span className="text-sm">{product.title.substring(0, 20)}</span>
+                                <span className="text-xs">{product.title.substring(0, 20)}</span>
                             </div>
                             <div className="flex gap-2 items-center">
                                 <div className="flex items-center gap-2">
@@ -64,7 +69,13 @@ const Cart = ({products, setKeranjang}) => {
                         <span>Total Price</span>
                         <span>${totalPrice}</span>
                     </div>
-                    <button className="bg-black w-full text-white py-5">CheckOut</button>
+                    <button onClick={notify} className="bg-black w-full text-white py-5">
+                        <ToastContainer
+                        position="top-center"
+                        hideProgressBar
+                        limit={1}
+                         />
+                        CheckOut</button>
                 </div>
         </div>
   )
